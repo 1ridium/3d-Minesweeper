@@ -1,6 +1,11 @@
+#include "field.h"
 using namespace std;
 
-class Field{
+int Field::bombsLeft()
+{
+	return bombsLeftPre;
+}
+/* this is probably all garbage	
 	int const totalSpaces;
 	int spacesLeftPre;
 	int spacesLeftPost;
@@ -10,6 +15,7 @@ class Field{
 	int posX;
 	int posY;
 	int posZ;
+
 public:
 	int spacesLeft()
 	{
@@ -20,6 +26,5 @@ public:
 	{
 		return bombsLeftPre;
 	}
-	asdfas;ldkfj;lkkjf
+	this isnt */
 	// sup brian
-};
