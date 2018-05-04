@@ -1,20 +1,32 @@
 //header for space class
-#include "field.h"
+//#include "field.h"
+#include <iostream>
+//using namespace std;
 
 class Space
 {
-	friend class Field
-public:
-	bool isBomb=false;
-	bool isFlagged = false;
-	bool isOnCursor = false;
-	bool isCleared = false;
-	int numAround = 3;
-	int xPos = 0;
-	int yPos = 0;
-	int zPos = 0;
-        Field b;
-	void setBomb(Field&);
+	friend class Field;
+private:
+	
+	bool isBomb;
+	bool isFlagged;
+	bool isOnCursor;
+	bool isCleared;
+	int numAround;
+	int xPos;
+	int yPos;
+	int zPos;
+public: 	
+	Space();
+	void setBomb(/*Field& temp*/);
 	void getCleared();
 	void getFlagged();
+	void setLoc(int x, int y, int z);
+	int getX();
+	int getY();
+	int getZ();
+	bool getIsBomb();
+	bool getIsFlagged();
+	bool getIsOnCursor();
+	bool getIsCleared();
 };

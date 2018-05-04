@@ -1,20 +1,27 @@
 //learning how a header file works
+#include <iostream>
+#include "space.h"
+//using namespace std;
 
 class Field
 {
 private:
-	const int totalSpaces = 0;
-	int spacesLeftPre = 0;
-	int spacesLeftPost = 0;
-	int bombsLeftPre = 50;
-	int bombsLeftPost = 0;
-	int maxBombs = 0;
-	int posX = 0;
-	int posY = 0;
-	int posZ = 0;
+	int totalSpaces;
+	int spacesLeftPre;
+	int spacesLeftPost;
+	int bombsLeftPre;
+	int bombsLeftPost;
+	int maxBombs;
+	int posX;
+	int posY;
+	int posZ;
+	Space spaces[8][8][8];
 public:
-	
 	Field();
 	int spacesLeft();
 	int bombsLeft();
+	int returnTotX();
+	int returnTotY();
+	int returnTotZ();
+	int getErrorChecks();
 };
