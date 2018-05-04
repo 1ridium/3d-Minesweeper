@@ -1,4 +1,5 @@
 //header for space class
+#include "field.h"
 
 class Space
 {
@@ -12,6 +13,8 @@ public:
 	int xPos = 0;
 	int yPos = 0;
 	int zPos = 0;
-        
-	void setBomb();
+        Field b;
+	void setBomb(Field&);
+	void getCleared();
+	void getFlagged();
 };
