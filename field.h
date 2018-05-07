@@ -24,9 +24,13 @@ public:
 	Field();
 	void initBombs(int x, int y, int z);
 	void printBombs();
+	void printBombsHidden();
 	void getCleared(int x, int y, int z);
 	void getFlagged(int x, int y, int z);
     void setNumAround();
+    void openZeros(int x, int y, int z);
+    //void openAllZero();
+    //int openOneZero();
     int spacesLeft();
 	int bombsLeft();
 	int returnTotX();
@@ -34,4 +38,5 @@ public:
 	int returnTotZ();
 	int getErrorChecks();
 	int getBombsSet();
+    bool isInBounds(int x, int y, int z);
 };

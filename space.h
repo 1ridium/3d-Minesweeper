@@ -7,7 +7,7 @@ class Space
 {
 	friend class Field;
 private:
-	
+
 	bool isBomb;
 	bool isFlagged;
 	bool isOnCursor;
@@ -16,16 +16,15 @@ private:
 	int xPos;
 	int yPos;
 	int zPos;
-public: 	
+public:
 	Space();
+	void setLoc(int x, int y, int z);
 	void setBomb(int nB, int nS);
 	void setNoBombManual();
 	void setCleared();
-    void getCleared();
-	void getFlagged();
-	void setLoc(int x, int y, int z);
 	void setNumAround(int n);
-	int getX();
+	void setFlagged();
+    int getX();
 	int getY();
 	int getZ();
 	int checkNumAround();
@@ -34,5 +33,5 @@ public:
 	bool getIsFlagged();
 	bool getIsOnCursor();
 	bool getIsCleared();
-	
+
 };

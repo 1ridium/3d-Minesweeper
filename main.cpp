@@ -1,7 +1,7 @@
 #include "field.h"
 //#include "space.h"
 #include <iostream>
-using namespace std;
+using namespace std; 
 
 int main(int argc, const char * argv[])
 {
@@ -13,11 +13,12 @@ int main(int argc, const char * argv[])
 	cout << "Total y values: " << a.returnTotY() << endl;
 	cout << "Total z values: " << a.returnTotZ() << endl;
 	cout << "Error check int: " << a.getErrorChecks() << endl;
-	a.initBombs(0,0,0);
+	a.initBombs(2,4,3);
 	cout << "Total number of bombs set: " << a.getBombsSet() << endl;
 	cout << "Here is the field!"  << endl << endl;
 	a.setNumAround();
 	a.printBombs();
+    a.printBombsHidden();
     cout << "Select x, y, and z values to clear: ";
    	cin >> x;
     cout << " ";
@@ -33,6 +34,6 @@ int main(int argc, const char * argv[])
 	//z = spa.getZ();
 	//cout << "x value of the space is: " << x << endl;
 	//cout << "y value of the space is: " << y << endl;
-	//cout << "z value of the space is: " << z << endl;	
+	//cout << "z value of the space is: " << z << endl;
 	return 0;
 }

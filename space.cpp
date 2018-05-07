@@ -1,17 +1,5 @@
 #include "space.h"
 using namespace std;
-/*class Space {
-	friend class Field;
-	bool isBomb;
-	bool isFlagged;
-	bool isOnCursor;
-	bool isCleared;
-	int numAround;
-	int xPos;
-	int yPos;
-	int zPos;
-public:
-*/
 
 Space::Space(){
 	//cout << "lets make a space" << endl;
@@ -32,24 +20,6 @@ void Space::setLoc(int x, int y, int z){
 	zPos = z;
 }
 
-int Space::getBombAround(){
-	return numAround;
-}
-
-void Space::setCleared(){
-    isCleared = true;
-    if (isBomb){
-        cout << "You lose" << endl;
-    }
-    else{
-        cout << "Number of bombs around this space: " <<  numAround << endl;
-    }
-}   
-
-void Space::setNoBombManual(){
-	isBomb = false;
-}
-
 void Space::setBomb(int nB, int nS ){
 	double sL; //spaces left
 	double bL;
@@ -62,23 +32,29 @@ void Space::setBomb(int nB, int nS ){
 	if(rng<probBomb)
 	{
 		isBomb = true;
-	}	
+	}
 }
 
-bool Space::getIsBomb(){
-	return isBomb;
-}
-	
-bool Space::getIsFlagged(){
-	return isFlagged;
+void Space::setNoBombManual(){
+	isBomb = false;
 }
 
-bool Space::getIsOnCursor(){
-	return isOnCursor;
+void Space::setCleared(){
+  isCleared = true;
+  if (isBomb){
+    cout << "You lose" << endl;
+  }
+  else{
+    cout << "Number of bombs around this space: " <<  numAround << endl;
+  }
 }
 
-bool Space::getIsCleared(){
-	return isCleared;
+void Space::setNumAround(int n){
+	numAround = n;
+}
+
+void Space::setFlagged(){
+    isFlagged = true;
 }
 
 int  Space::getX(){
@@ -99,13 +75,13 @@ int Space::checkNumAround(){
 			if (zPos == 0 || zPos == 7){
 				return 8;
 			}
-		return 12;	
+		return 12;
 		}
 		if (zPos == 0 || zPos == 7){
 			return 12;
 		}
 	return 18;
-	} 
+	}
 	if (yPos == 0 || yPos == 7){
 		if (zPos == 0 || zPos == 7){
 			return 12;
@@ -117,20 +93,23 @@ int Space::checkNumAround(){
 	}
 	return 27;
 }
-//void setNum(Space *a[3][3][3]);
 
-void Space::setNumAround(int n){
-	numAround = n;
+int Space::getBombAround(){
+	return numAround;
 }
 
-void Space::getCleared()
-{
-
+bool Space::getIsBomb(){
+	return isBomb;
 }
 
-void Space::getFlagged()
-{
-
+bool Space::getIsFlagged(){
+	return isFlagged;
 }
 
+bool Space::getIsOnCursor(){
+	return isOnCursor;
+}
 
+bool Space::getIsCleared(){
+	return isCleared;
+}
