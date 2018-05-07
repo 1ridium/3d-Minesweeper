@@ -20,7 +20,8 @@ public:
 	Space();
 	void setBomb(int nB, int nS);
 	void setNoBombManual();
-	void getCleared();
+	void setCleared();
+    void getCleared();
 	void getFlagged();
 	void setLoc(int x, int y, int z);
 	void setNumAround(int n);

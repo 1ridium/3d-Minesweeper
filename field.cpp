@@ -8,10 +8,11 @@ Field::Field() //constructor
 	totalSpaces = 8*8*8;
 	spacesLeftPre = totalSpaces;
 	spacesLeftPost = totalSpaces;
-	maxBombs = 50;
+	maxBombs = 180;
 	bombsLeftPre = maxBombs;
 	bombsLeftPost = maxBombs;
-	for (int a = 0; a < 8; a++) {
+	gameLost = false;
+    for (int a = 0; a < 8; a++) {
 		for (int b = 0; b < 8; b++) {
 			for (int c = 0; c < 8; c++) {
 				spaces[a][b][c].setLoc(a,b,c);				
@@ -151,7 +152,12 @@ void Field::printBombs(){
 
 
 void Field::getCleared(int x, int y, int z){
+    spaces[x][y][z].setCleared();
+}
 
+void Field::getFlagged(int x, int y, int z){
+    spaces[x][y][z].setFlagged();
+    bombsLeftPost--;
 }
 
 void Field::setNumAround(){

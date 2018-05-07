@@ -36,6 +36,16 @@ int Space::getBombAround(){
 	return numAround;
 }
 
+void Space::setCleared(){
+    isCleared = true;
+    if (isBomb){
+        cout << "You lose" << endl;
+    }
+    else{
+        cout << "Number of bombs around this space: " <<  numAround << endl;
+    }
+}   
+
 void Space::setNoBombManual(){
 	isBomb = false;
 }
