@@ -23,6 +23,8 @@ public:
 	Field();
 	void initBombs(int x, int y, int z);
 	void printBombs();
+	void getCleared(int x, int y, int z);
+	void setNumAround();
 	int spacesLeft();
 	int bombsLeft();
 	int returnTotX();

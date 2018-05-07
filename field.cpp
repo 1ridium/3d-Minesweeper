@@ -1,7 +1,7 @@
 //Field.cpp file 
 
 #include "field.h"
-
+using namespace std;
 
 Field::Field() //constructor
 {
@@ -21,7 +21,7 @@ Field::Field() //constructor
 	//posX = 0;
 	//posY = 0;
 	//posZ = 0;
-	std::cout<<"field created\n";
+	cout<<"field created\n";
 }
 
 int Field::returnTotX(){
@@ -93,7 +93,7 @@ void Field::initBombs(int x, int y, int z){
 	selZ = z; //like first click in game
 	around = spaces[selX][selY][selZ].checkNumAround();
 	spacesLeftPre -= around;
-	std::cout << spacesLeftPre << std::endl;
+	cout << spacesLeftPre << endl;
 	for (int a = 0; a < 8; a++){
 		for (int b = 0; b < 8; b++){
 			for (int c = 0; c < 8; c++){
@@ -131,21 +131,55 @@ int Field::getBombsSet(){
 }
 
 void Field::printBombs(){
-	for (int a = 0; a < 8; a++){
+	for (int c = 0; c < 8; c++){
+	cout << c << endl;
 		for (int b = 0; b < 8; b++){
-			for (int c = 0; c < 8; c++){
+			for (int a = 0; a < 8; a++){
 				if (spaces[a][b][c].getIsBomb() == true){
-					std::cout << "@";
+					cout << "@";
 				}
 				else {
-					std::cout << ".";
+					cout << spaces[a][b][c].getBombAround();
 				}
 			}
-		std::cout << std::endl;
+		cout << endl;
 		}
-	std::cout << std::endl << std::endl;
+	cout << endl << endl;
 	}
 }
+	
+
+
+void Field::getCleared(int x, int y, int z){
+
+}
+
+void Field::setNumAround(){
+	int num = 0;
+	for (int c = 0; c < 8; c++){
+		for (int b = 0; b < 8; b++){
+			for (int a = 0; a < 8; a++){
+				num = 0;
+				for (int l = c-1; l < c+2; l++){
+					for (int k = b-1; k < b+2; k++){
+						for (int j= a-1; j < a+2; j++){
+							//big if statement incoming
+							if (j < 0 || k < 0 || l < 0 || j > 7 || k > 7 || l > 7){}
+							else{ 
+								if(spaces[j][k][l].getIsBomb()==true){
+									num++;
+								}
+							}
+						}
+					}
+				}
+				spaces[a][b][c].setNumAround(num);
+			}
+		}
+	}
+}
+
+
 int Field::bombsLeft()
 {
 	return bombsLeftPre;

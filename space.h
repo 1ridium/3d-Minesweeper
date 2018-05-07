@@ -23,12 +23,15 @@ public:
 	void getCleared();
 	void getFlagged();
 	void setLoc(int x, int y, int z);
+	void setNumAround(int n);
 	int getX();
 	int getY();
 	int getZ();
 	int checkNumAround();
+	int getBombAround();
 	bool getIsBomb();
 	bool getIsFlagged();
 	bool getIsOnCursor();
 	bool getIsCleared();
+	
 };

@@ -1,5 +1,5 @@
 #include "space.h"
-
+using namespace std;
 /*class Space {
 	friend class Field;
 	bool isBomb;
@@ -14,7 +14,7 @@ public:
 */
 
 Space::Space(){
-	//std::cout << "lets make a space" << std::endl;
+	//cout << "lets make a space" << endl;
 	isBomb = false;
 	isFlagged = false;
 	isOnCursor = false;
@@ -26,10 +26,14 @@ Space::Space(){
 }
 
 void Space::setLoc(int x, int y, int z){
-	//std::cout << "making a new cell" << std::endl;
+	//cout << "making a new cell" << endl;
 	xPos = x;
 	yPos = y;
 	zPos = z;
+}
+
+int Space::getBombAround(){
+	return numAround;
 }
 
 void Space::setNoBombManual(){
@@ -104,6 +108,11 @@ int Space::checkNumAround(){
 	return 27;
 }
 //void setNum(Space *a[3][3][3]);
+
+void Space::setNumAround(int n){
+	numAround = n;
+}
+
 void Space::getCleared()
 {
 
