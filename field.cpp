@@ -8,7 +8,7 @@ Field::Field() //constructor
 	totalSpaces = 8*8*8;
 	spacesLeftPre = totalSpaces;
 	spacesLeftPost = totalSpaces;
-	maxBombs = 50;
+	maxBombs = 512;
 	bombsLeftPre = maxBombs;
 	bombsLeftPost = maxBombs;
 	for (int a = 0; a < 8; a++) {
@@ -84,6 +84,51 @@ int Field::getErrorChecks(){
 	}
 	return result;
 }
+
+void Field::initBombs(int x, int y, int z){
+	//spacesLeftPre=8*8*8;
+	int around = 0;
+	selX = x; //set field selection variables
+	selY = y; //to initial values of xyz
+	selZ = z; //like first click in game
+	around = spaces[selX][selY][selZ].checkNumAround();
+	spacesLeftPre -= around;
+	std::cout << spacesLeftPre << std::endl;
+	for (int a = 0; a < 8; a++){
+		for (int b = 0; b < 8; b++){
+			for (int c = 0; c < 8; c++){
+			//test if touching first bomb
+				if (a>=(selX-1) && a<= (selX+1) && b>=(selY-1) && b<=(selY+1) && c>=(selZ-1) && c<=(selZ+1)){
+					spaces[a][b][c].setNoBombManual();
+					spacesLeftPre--;
+				}
+				else{
+					spaces[a][b][c].setBomb(bombsLeftPre, spacesLeftPre);
+					spacesLeftPre--;
+					if(spaces[a][b][c].getIsBomb() == true){
+					bombsLeftPre--;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+int Field::getBombsSet(){
+	int total = 0;
+	for (int a = 0; a < 8; a++){
+		for (int b = 0; b < 8; b++){
+			for (int c = 0; c < 8; c++){
+				if (spaces[a][b][c].getIsBomb() == true){
+					total++;
+				}
+			}
+		}
+	}
+	return total;
+}
+
 int Field::bombsLeft()
 {
 	return bombsLeftPre;
@@ -93,26 +138,6 @@ int Field::spacesLeft()
 {
 	return spacesLeftPre;
 }
-/* this is probably all garbage	
-	int const totalSpaces;
-	int spacesLeftPre;
-	int spacesLeftPost;
-	int bombsLeftPre;
-	int bombsLeftPost;
-	int maxBombs;
-	int posX;
-	int posY;
-	int posZ;
-
-public:
-	int spacesLeft()
-	{
-		spacesLeftPre --;
-		return spacesLeftPre+1;
-	}
-	int bombsLeft()
-	{
-		return bombsLeftPre;
-	}
-	this isnt */
 	// sup brian
+
+

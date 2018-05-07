@@ -13,6 +13,8 @@ int main(int argc, const char * argv[])
 	std::cout << "Total y values: " << a.returnTotY() << std::endl;
 	std::cout << "Total z values: " << a.returnTotZ() << std::endl;
 	std::cout << "Error check int: " << a.getErrorChecks() << std::endl;
+	a.initBombs(3,3,3);
+	std::cout << "Total number of bombs set: " << a.getBombsSet() << std::endl;
 	//result = a.bombsLeft();
 	//cout << "bombs left are " << result << endl;
 	//x = spa.getX();

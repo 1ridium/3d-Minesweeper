@@ -18,13 +18,15 @@ private:
 	int zPos;
 public: 	
 	Space();
-	void setBomb(/*Field& temp*/);
+	void setBomb(int nB, int nS);
+	void setNoBombManual();
 	void getCleared();
 	void getFlagged();
 	void setLoc(int x, int y, int z);
 	int getX();
 	int getY();
 	int getZ();
+	int checkNumAround();
 	bool getIsBomb();
 	bool getIsFlagged();
 	bool getIsOnCursor();

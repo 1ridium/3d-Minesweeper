@@ -32,22 +32,23 @@ void Space::setLoc(int x, int y, int z){
 	zPos = z;
 }
 
-void Space::setBomb(/*Field& temp*/)
-{
-	/*
+void Space::setNoBombManual(){
+	isBomb = false;
+}
+
+void Space::setBomb(int nB, int nS ){
 	double sL; //spaces left
 	double bL;
 	double probBomb;
 	double rng; //rolls to see if it will be a bomb
-	sL = temp.spacesLeft();
-	bL = temp.bombsLeft();
+	sL = ((double) nS);
+	bL = ((double) nB);
 	probBomb = bL/sL;
 	rng = ((double) rand() / (RAND_MAX));
 	if(rng<probBomb)
 	{
 		isBomb = true;
-		//b.bombsLeftPre --;	//decrease num bombs
-	}	*/
+	}	
 }
 
 bool Space::getIsBomb(){
@@ -76,6 +77,31 @@ int Space::getY(){
 
 int Space::getZ(){
 	return zPos;
+}
+
+int Space::checkNumAround(){
+	if (xPos == 0 || xPos == 7){
+		if (yPos == 0 || yPos == 7){
+			if (zPos == 0 || zPos == 7){
+				return 8;
+			}
+		return 12;	
+		}
+		if (zPos == 0 || zPos == 7){
+			return 12;
+		}
+	return 18;
+	} 
+	if (yPos == 0 || yPos == 7){
+		if (zPos == 0 || zPos == 7){
+			return 12;
+		}
+	return 18;
+	}
+	if (zPos == 0 || zPos == 7){
+		return 18;
+	}
+	return 27;
 }
 //void setNum(Space *a[3][3][3]);
 void Space::getCleared()
