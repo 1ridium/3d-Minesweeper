@@ -8,7 +8,7 @@ Field::Field() //constructor
 	totalSpaces = 8*8*8;
 	spacesLeftPre = totalSpaces;
 	spacesLeftPost = totalSpaces;
-	maxBombs = 512;
+	maxBombs = 50;
 	bombsLeftPre = maxBombs;
 	bombsLeftPost = maxBombs;
 	for (int a = 0; a < 8; a++) {
@@ -117,6 +117,7 @@ void Field::initBombs(int x, int y, int z){
 
 int Field::getBombsSet(){
 	int total = 0;
+
 	for (int a = 0; a < 8; a++){
 		for (int b = 0; b < 8; b++){
 			for (int c = 0; c < 8; c++){
@@ -129,6 +130,22 @@ int Field::getBombsSet(){
 	return total;
 }
 
+void Field::printBombs(){
+	for (int a = 0; a < 8; a++){
+		for (int b = 0; b < 8; b++){
+			for (int c = 0; c < 8; c++){
+				if (spaces[a][b][c].getIsBomb() == true){
+					std::cout << "@";
+				}
+				else {
+					std::cout << ".";
+				}
+			}
+		std::cout << std::endl;
+		}
+	std::cout << std::endl << std::endl;
+	}
+}
 int Field::bombsLeft()
 {
 	return bombsLeftPre;

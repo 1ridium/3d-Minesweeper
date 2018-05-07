@@ -15,6 +15,8 @@ int main(int argc, const char * argv[])
 	std::cout << "Error check int: " << a.getErrorChecks() << std::endl;
 	a.initBombs(3,3,3);
 	std::cout << "Total number of bombs set: " << a.getBombsSet() << std::endl;
+	std::cout << "Here is the field!"  << std::endl << std::endl;
+	a.printBombs();
 	//result = a.bombsLeft();
 	//cout << "bombs left are " << result << endl;
 	//x = spa.getX();

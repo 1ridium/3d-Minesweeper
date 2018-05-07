@@ -22,6 +22,7 @@ private:
 public:
 	Field();
 	void initBombs(int x, int y, int z);
+	void printBombs();
 	int spacesLeft();
 	int bombsLeft();
 	int returnTotX();
