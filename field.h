@@ -27,8 +27,11 @@ public:
 	void printBombsHidden();
 	void getCleared(int x, int y, int z);
 	void getFlagged(int x, int y, int z);
+    void updateSpacesLeft();
     void setNumAround();
     void openZeros(int x, int y, int z);
+    void lostGame();
+    void wonGame();
     //void openAllZero();
     //int openOneZero();
     int spacesLeft();
@@ -39,4 +42,5 @@ public:
 	int getErrorChecks();
 	int getBombsSet();
     bool isInBounds(int x, int y, int z);
+    bool getGameLost();
 };

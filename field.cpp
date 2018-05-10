@@ -101,6 +101,14 @@ void Field::printBombsHidden(){
 
 void Field::getCleared(int x, int y, int z){
     spaces[x][y][z].setCleared();
+    if(spaces[x][y][z].getIsBomb()){
+        gameLost=true;    
+    }
+    else if(spaces[x][y][z].checkNumAround()==0){
+        openZeros(x,y,z);
+        updateSpacesLeft();
+    }
+    else{spacesLeftPost--;}
 }
 
 void Field::getFlagged(int x, int y, int z){
@@ -108,6 +116,17 @@ void Field::getFlagged(int x, int y, int z){
     bombsLeftPost--;
 }
 
+void Field::updateSpacesLeft(){
+    int count = 0;
+    for (int z = 0; z < 8; z++){
+        for (int y = 0; y < 8; y++){
+            for (int x = 0; x < 8; x++){
+                if(!spaces[x][y][z].getIsCleared()&&!spaces[x][y][z].getIsBomb()){count++;}
+            }
+        }
+    }
+    spacesLeftPost=count;
+} 
 void Field::setNumAround(){
 	int num = 0;
 	for (int c = 0; c < 8; c++){
@@ -143,17 +162,28 @@ void Field::openZeros(int x, int y, int z){
 			for (int b = y-1; b < y+2; b++){
 				for (int a = x-1; a < x+2; a++){
 					if (isInBounds(a,b,c)){ //if this is a real index for a space
-						if (spaces[a][b][c].getBombAround() == 0 &&
-!spaces[a][b][c].getIsCleared()){
+                        if (spaces[a][b][c].getBombAround() == 0 && !spaces[a][b][c].getIsCleared()){
 							spaces[a][b][c].setCleared();
                             openZeros(a,b,c);
 						}
+                        else{spaces[a][b][c].setCleared();}
                     }
 				}
 			}
 		}
 	}
 	cout << "All zeroes should be open" << endl;
+}
+
+void Field::lostGame(){
+    cout << "you lose";
+    gameLost = true;
+    //return true;
+}
+
+void Field::wonGame(){
+    cout << ":)";
+    //return false;
 }
 
 /* not cool, can be done recursive
@@ -204,11 +234,11 @@ int Field::openOneZero(){ //loop through all and clear all contiguous 0s
 */
 
 int Field::bombsLeft(){
-	return bombsLeftPre;
+	return bombsLeftPost;
 }
 
 int Field::spacesLeft(){
-	return spacesLeftPre;
+	return spacesLeftPost;
 }
 
 int Field::returnTotX(){
@@ -292,4 +322,9 @@ bool Field::isInBounds(int x, int y, int z){
     }
     return true;
 }
+
+bool Field::getGameLost(){
+    return gameLost;
+}
+    
 // sup brian
