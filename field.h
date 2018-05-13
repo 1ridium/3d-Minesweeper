@@ -43,4 +43,5 @@ public:
 	int getBombsSet();
     bool isInBounds(int x, int y, int z);
     bool getGameLost();
+    int testWin();
 };

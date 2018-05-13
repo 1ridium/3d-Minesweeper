@@ -23,7 +23,9 @@ int main(int argc, const char * argv[])
 	cout << "Here is the field!"  << endl << endl;
 	a.printBombs();
     a.printBombsHidden();
+    int temp = 0;
     while(!a.getGameLost()&&a.spacesLeft()!=0){
+/*this is the actual runing code that must be done
         cout << "Select x, y, and z values to interact with: ";
    	    cin >> x;
         cout << " ";
@@ -36,6 +38,10 @@ int main(int argc, const char * argv[])
         if (sel == 0){a.getFlagged(x,y,z);}
         else {a.getCleared(x,y,z);}
         a.printBombsHidden();
+This is the test code */
+        temp = a.testWin();       
+        a.printBombsHidden();
+        
     }
     if (a.spacesLeft()==0){
         a.wonGame();
@@ -45,9 +51,5 @@ int main(int argc, const char * argv[])
     }
     else{cout << "how did i get here";}
   	return 0;
-    // This will be the actual loop that the code should run assuming field has
-    // been made, first point has been selected and also that all 0's have been
-    // opened
-
     
 }

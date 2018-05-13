@@ -44,9 +44,6 @@ void Space::setCleared(){
   if (isBomb){
     cout << "You lose" << endl;
   }
-  else{
-    cout << "Number of bombs around this space: " <<  numAround << endl;
-  }
 }
 
 void Space::setNumAround(int n){

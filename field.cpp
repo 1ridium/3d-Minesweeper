@@ -5,9 +5,9 @@ using namespace std;
 
 Field::Field(){ //constructor
 	totalSpaces = 8*8*8;
-	spacesLeftPre = totalSpaces;
-	spacesLeftPost = totalSpaces;
 	maxBombs = 18;
+	spacesLeftPre = totalSpaces;
+	spacesLeftPost = totalSpaces-maxBombs;
 	bombsLeftPre = maxBombs;
 	bombsLeftPost = maxBombs;
 	gameLost = false;
@@ -55,6 +55,7 @@ void Field::initBombs(int x, int y, int z){
 	}
     setNumAround();
 	openZeros(selX,selY,selZ);
+    updateSpacesLeft();
   cout << "starting point selected: " << selX << " " << selY << " " << selZ << endl;
 }
 
@@ -177,7 +178,6 @@ void Field::openZeros(int x, int y, int z){
 
 void Field::lostGame(){
     cout << "you lose";
-    gameLost = true;
     //return true;
 }
 
@@ -325,6 +325,20 @@ bool Field::isInBounds(int x, int y, int z){
 
 bool Field::getGameLost(){
     return gameLost;
+}
+
+int Field::testWin(){
+    for (int z = 0; z < 8; z++){
+        for (int y = 0; y < 8; y++){
+            for (int x = 0; x < 8; x++){
+                if(!spaces[x][y][z].getIsBomb()&&!spaces[x][y][z].getIsCleared()){
+//if not a bomb and not cleared clear
+                    getCleared(x,y,z);
+                    return 1;
+                }
+            }
+        }
+    }
 }
     
 // sup brian
